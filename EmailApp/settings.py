@@ -120,3 +120,9 @@ AUTH_USER_MODEL = 'usermail.UserProfile'
 
 # Setting Email Backend to use for sending Emails
 EMAIL_BACKEND = 'post_office.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.com'
+EMAIL_USE_SSL = True
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'syskart@yandex.com'
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
+DEFAULT_FROM_EMAIL = "syskart@yandex.com"
