@@ -1,17 +1,17 @@
-from django.contrib.auth.admin import UserAdmin
 from django.contrib.admin import register
+from django.contrib.auth.admin import UserAdmin
+from django.http import HttpResponseRedirect
 from django.urls import path
 
-from .models import UserProfile
-from django.http import HttpResponseRedirect
-
 from usermail.tasks import send_email_to_all
+from .models import UserProfile
+
+
 # Register your models here.
 
 @register(UserProfile)
 class UserProfileAdmin(UserAdmin):
     change_list_template = 'admin/payout-admin.html'
-
 
     def get_urls(self):
         urls = super().get_urls()
