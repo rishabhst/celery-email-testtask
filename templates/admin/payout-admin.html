@@ -1,0 +1,17 @@
+{% extends "admin/change_list.html" %}
+
+{% block object-tools-items %}
+    {{ block.super }}
+    <li>
+<!--     	<form action="send_mail_to_all/" method="POST">
+            {% csrf_token %}
+                <button class="btn btn-high btn-success" type="submit">>Send Mail To All</button>
+        </form> -->
+		<a href="{% url 'admin:send_mail_to_all' %}" class="btn btn-high btn-success">Send Mail To All</a>
+    </li>
+    <script type="text/javascript">
+        function getvalue() {
+
+        }
+    </script>	
+{% endblock %}
