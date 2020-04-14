@@ -1,8 +1,11 @@
 from django.test import TestCase
-from .models import UserProfile
-from usermail.tasks import send_email_to_emails
 from mock import patch
 
+from usermail.tasks import send_email_to_emails
+from .models import UserProfile
+
+
+# Create your tests here.
 
 class UserEmailTestCase(TestCase):
     def setUp(self):
