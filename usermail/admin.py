@@ -17,7 +17,8 @@ class UserProfileAdmin(UserAdmin):
     def get_urls(self):
         urls = super().get_urls()
         my_urls = [
-            path('send_mail_to_all/', self.send_mail_to_all, name='send_mail_to_all'),
+            path('send_mail_to_all/', self.send_mail_to_all,
+                 name='send_mail_to_all'),
         ]
         return my_urls + urls
 
@@ -25,7 +26,8 @@ class UserProfileAdmin(UserAdmin):
         '''
         This task can also performed by below action, but we have created it to show that we can customise django-admin page as per our need.
         '''
-        user_emails = UserProfile.objects.filter(is_staff=False).values_list('email', flat=True)[::1]
+        user_emails = UserProfile.objects.filter(
+            is_staff=False).values_list('email', flat=True)[::1]
         send_email_to_emails.delay(user_emails)
         self.message_user(request, "Email has been sent to all.")
         return HttpResponseRedirect("../")
@@ -36,5 +38,5 @@ class UserProfileAdmin(UserAdmin):
         '''
         user_emails = queryset.values_list('email', flat=True)[::1]
         send_email_to_emails.delay(user_emails)
-        self.message_user(request, "Email has been sent to selected users.") 
+        self.message_user(request, "Email has been sent to selected users.")
     send_mail_to_selected_user.short_description = "Sent email to selected users"

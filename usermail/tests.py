@@ -2,7 +2,7 @@ from django.test import TestCase
 from .models import UserProfile
 from usermail.tasks import send_email_to_emails
 from mock import patch
-# Create your tests here.
+
 
 class UserEmailTestCase(TestCase):
     def setUp(self):
@@ -13,5 +13,5 @@ class UserEmailTestCase(TestCase):
     def test_user_email(self):
         user_emails = UserProfile.objects.all().values_list('email', flat=True)[::1]
         with patch('usermail.tasks.send_email_to_emails.delay') as mock_task:
-        	send_email_to_emails.delay(user_emails)
-        	self.assertTrue(mock_task.called)	
+            send_email_to_emails.delay(user_emails)
+            self.assertTrue(mock_task.called)
